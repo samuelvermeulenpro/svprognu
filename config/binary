@@ -47,7 +47,7 @@ LB_DEBIAN_INSTALLER="live"
 
 # $LB_DEBIAN_INSTALLER_DISTRIBUTION: set debian-installer suite
 # (Default: empty)
-LB_DEBIAN_INSTALLER_DISTRIBUTION="buster"
+LB_DEBIAN_INSTALLER_DISTRIBUTION="bullseye"
 
 # $LB_DEBIAN_INSTALLER_PRESEEDFILE: set debian-installer preseed filename/url
 # (Default: )
@@ -74,20 +74,20 @@ LB_HDD_SIZE="auto"
 LB_HDD_PARTITION_START=""
 
 # $LB_ISO_APPLICATION: set iso author
-# (Default: SVPRO_GNU)
-LB_ISO_APPLICATION="SVPRO_GNU"
+# (Default: SVPROGNU-11)
+LB_ISO_APPLICATION="SVPROGNU-11"
 
 # $LB_ISO_PREPARER: set iso preparer
-# (Default: live-build 1:20191221; https://salsa.debian.org/live-team/live-build)
-LB_ISO_PREPARER="live-build 1:20191221; https://salsa.debian.org/live-team/live-build"
+# (Default: live-build 1:20190311; https://debian-live.alioth.debian.org/live-build)
+LB_ISO_PREPARER="live-build 1:20190311; https://debian-live.alioth.debian.org/live-build"
 
 # $LB_ISO_PUBLISHER: set iso publisher
-# (Default: Live Systems project; https://wiki.debian.org/DebianLive; debian-live@lists.debian.org)
-LB_ISO_PUBLISHER="Live Systems project; https://wiki.debian.org/DebianLive; debian-live@lists.debian.org"
+# (Default: Live Systems project; https://debian-live.alioth.debian.org/; debian-live@lists.debian.org)
+LB_ISO_PUBLISHER="Live Systems project; https://debian-live.alioth.debian.org/; debian-live@lists.debian.org"
 
 # $LB_ISO_VOLUME: set iso volume (max 32 chars)
-# (Default: SVPRO_GNU)
-LB_ISO_VOLUME="SVPRO_GNU"
+# (Default: SVPROGNU-11)
+LB_ISO_VOLUME="SVPROGNU-11"
 
 # $LB_JFFS2_ERASEBLOCK: set jffs2 eraseblock size
 # (Default: unset)
@@ -98,12 +98,12 @@ LB_JFFS2_ERASEBLOCK=""
 LB_MEMTEST="none"
 
 # $LB_LOADLIN: set loadlin
-# (Default: false)
-LB_LOADLIN="false"
+# (Default: true)
+LB_LOADLIN="true"
 
 # $LB_WIN32_LOADER: set win32-loader
-# (Default: false)
-LB_WIN32_LOADER="false"
+# (Default: true)
+LB_WIN32_LOADER="true"
 
 # $LB_NET_ROOT_FILESYSTEM: set netboot filesystem
 # (Default: nfs)

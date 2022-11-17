@@ -20,4 +20,5 @@ lb config noauto \
 	--iso-application "SVPROGNU-11" \
         --backports "false" \
         --updates "true" \
+	--security "false" \
         "${@}"
