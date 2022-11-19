@@ -3,10 +3,6 @@
 Système d'exploitation x64 - 100% GNU basé sur Debian
 
 ## Installation (root)
-### Générer ISO seule
-```
-curl https://git.weblib.re/svpro/svpro_gnu/raw/branch/develop/build_svprognu | bash
-```
 ### Créer clef usb + persistence
 **Attention ! La clef ne doit pas être montée par un autre processus (explorateur de fichiers, utilitaire d'auto-mount...)
 ```
