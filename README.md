@@ -19,7 +19,7 @@ Depuis le menu du live, choisir "Installation Graphique ou Experts"
 
 
 
-## Build iso avec live-build (expoerts)
+## Build iso avec live-build (experts)
 Cloner le dépôt puis :
 ```
 apt install live-build
