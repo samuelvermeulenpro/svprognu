@@ -12,7 +12,7 @@ lb config noauto \
         --debian-installer "live" \
         --bootappend-live "lang=fr_FR.UTF-8 locales=fr_FR.UTF-8 keyboard-layouts=fr splash timezone=Europe/Paris utc=yes keyboard-model=pc105 hostname=svprognu boot=live persistence components username=svpro_gnu" \
         --bootappend-install "locales=fr_FR.UTF-8" \
-        --binary-images "live-svprognu_amd64" \
+        --binary-images "iso-hybrid" \
 	--uefi-secure-boot "enable" \
         --linux-flavours "amd64" \
 	--linux-packages "linux-image linux-headers" \
