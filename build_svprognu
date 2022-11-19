@@ -5,25 +5,29 @@
 
 set -e
 
-ISO="live_svpro_gnu-amd64.hybrid.iso"
+ISO="live-svprognu_amd64.iso"
 
-# Recuperation iso
-echo "Téléchargement de l'iso..."
-sleep 5
-wget -O ${ISO} https://www.weblib.re/dokuwiki/_media/svpro_gnu:live_svpro_gnu-amd64.hybrid.iso
-wget -O ${ISO}.md5sum https://www.weblib.re/dokuwiki/_media/svpro_gnu:live_svpro_gnu-amd64.hybrid.iso.md5sum
-echo "Vérification de l'image..."
 
-if ! md5sum -c ${ISO}.md5sum
-	then
-	echo "ISO Corompue. Abandon !!"
-	rm -f ${ISO} ${ISO}.md5
-	exit 1
-fi
+while getopts ":d: r:" opt; do
+case $opt in
+   r)
+	# Recuperation iso
+	echo "Téléchargement de l'iso..."
+	sleep 5
+	wget -O ${ISO} https://www.weblib.re/dokuwiki/_media/svprognu:live-svprognu_amd64.iso
+	wget -O ${ISO}.md5sum https://www.weblib.re/dokuwiki/_media/svprognu:live-svprognu_amd64.iso.md5sum
+	echo "Vérification de l'image..."
+
+	if ! md5sum -c ${ISO}.md5sum
+		then
+		echo "ISO Corompue. Abandon !!"
+		rm -f ${ISO} ${ISO}.md5
+		exit 1
+	fi
+	;;
 
 # Copie de l'image iso sur clé
-while getopts ":d: " opt; do
-case $opt in
+
    d)
 	echo "Transfert en cours..."
 	dd if=${ISO} of=$OPTARG bs=4M status=progress
