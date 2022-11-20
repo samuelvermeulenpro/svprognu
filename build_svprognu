@@ -5,7 +5,7 @@
 
 set -e
 
-ISO="live-svprognu_amd64.iso"
+ISO="live-svprognu-bullseye_amd64.iso"
 
 
 while getopts ":d: r:" opt; do
@@ -14,8 +14,8 @@ case $opt in
 	# Recuperation iso
 	echo "Téléchargement de l'iso..."
 	sleep 5
-	wget -O ${ISO} https://www.weblib.re/dokuwiki/_media/svprognu:live-svprognu_amd64.iso
-	wget -O ${ISO}.md5sum https://www.weblib.re/dokuwiki/_media/svprognu:live-svprognu_amd64.iso.md5sum
+	wget -O ${ISO} https://www.weblib.re/dokuwiki/_media/svprognu:${ISO}
+	wget -O ${ISO}.md5sum https://www.weblib.re/dokuwiki/_media/svprognu:${ISO}.md5sum
 	echo "Vérification de l'image..."
 
 	if ! md5sum -c ${ISO}.md5sum
