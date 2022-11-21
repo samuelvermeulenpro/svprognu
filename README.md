@@ -34,10 +34,3 @@ lb build
 ### Démo (Session Live via noVNC)
 En ligne uniquement en journée
 https://svprognu.weblib.re/
-
-
-### ToDo
-
-- [x] Installeur
-- [x] Live Persistence
-- [ ] Integration Yunohost
