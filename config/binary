@@ -41,7 +41,11 @@ LB_BUILD_WITH_CHROOT="true"
 LB_DEBIAN_INSTALLER="live"
 
 # Set debian-installer suite
+<<<<<<< HEAD
 LB_DEBIAN_INSTALLER_DISTRIBUTION="buster"
+=======
+LB_DEBIAN_INSTALLER_DISTRIBUTION="bullseye"
+>>>>>>> test
 
 # Set debian-installer preseed filename/url
 LB_DEBIAN_INSTALLER_PRESEEDFILE=""
@@ -59,7 +63,11 @@ LB_HDD_SIZE="auto"
 LB_HDD_PARTITION_START=""
 
 # Set iso author
+<<<<<<< HEAD
 LB_ISO_APPLICATION="SVPRO_GNU"
+=======
+LB_ISO_APPLICATION="SVPROGNU-11"
+>>>>>>> test
 
 # Set iso preparer
 LB_ISO_PREPARER="live-build @LB_VERSION@; https://salsa.debian.org/live-team/live-build"
@@ -68,7 +76,11 @@ LB_ISO_PREPARER="live-build @LB_VERSION@; https://salsa.debian.org/live-team/liv
 LB_ISO_PUBLISHER="Debian Live project; https://wiki.debian.org/DebianLive; debian-live@lists.debian.org"
 
 # Set iso volume (max 32 chars)
+<<<<<<< HEAD
 LB_ISO_VOLUME="SVPRO_GNU"
+=======
+LB_ISO_VOLUME="SVPROGNU-11"
+>>>>>>> test
 
 # Set jffs2 eraseblock size
 LB_JFFS2_ERASEBLOCK=""

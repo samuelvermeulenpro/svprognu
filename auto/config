@@ -4,7 +4,7 @@ set -e
 
 lb config noauto \
         --bootloaders "syslinux,grub-efi" \
-        --distribution "buster" \
+        --distribution "bullseye" \
         --architectures "amd64" \
         --archive-areas "main contrib non-free" \
         --apt-recommends "true" \
@@ -16,8 +16,9 @@ lb config noauto \
 	--uefi-secure-boot "enable" \
         --linux-flavours "amd64" \
 	--linux-packages "linux-image linux-headers" \
-	--iso-volume "SVPRO_GNU" \
-	--iso-application "SVPRO_GNU" \
+	--iso-volume "SVPROGNU-11" \
+	--iso-application "SVPROGNU-11" \
         --backports "false" \
         --updates "true" \
+	--security "true" \
         "${@}"
