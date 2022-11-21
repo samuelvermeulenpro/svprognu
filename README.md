@@ -7,7 +7,7 @@ Système d'exploitation x64 - 100% GNU basé sur Debian 11 (Bullseye)
 ### Créer clef usb + persistence
 **Attention ! La clef ne doit pas être montée par un autre processus (explorateur de fichiers, utilitaire d'auto-mount...)
 
-Si vous avez déjà téléchatgé l'image ISO, dans le même répertoire :
+* Si vous avez déjà téléchatgé l'image ISO, dans le même répertoire :
 ```
 curl https://git.weblib.re/svpro/svprognu/raw/branch/develop/build_svprognu | bash -s -- -d /dev/sdX
 ```
