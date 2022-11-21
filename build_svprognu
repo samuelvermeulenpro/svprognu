@@ -8,7 +8,7 @@ set -e
 ISO="live-svprognu-bullseye_amd64.iso"
 
 
-while getopts ":d: r:" opt; do
+while getopts "d: r:" opt; do
 case $opt in
    r)
 	# Recuperation iso
