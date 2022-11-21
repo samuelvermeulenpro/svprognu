@@ -8,9 +8,9 @@ set -e
 ISO="live-svprognu-bullseye_amd64.iso"
 
 
-while getopts "d: r:" opt; do
+while getopts ":r d:" opt; do
 case $opt in
-   r)
+   	r)
 	# Recuperation iso
 	echo "Téléchargement de l'iso..."
 	sleep 5
@@ -28,14 +28,18 @@ case $opt in
 
 # Copie de l'image iso sur clé
 
-   d)
+   	d)
 	echo "Transfert en cours..."
+	#Réinitialisation de la clé : Table DOS
+	printf 'o\nw' | fdisk $OPTARG
+
+	#Transfert
 	dd if=${ISO} of=$OPTARG bs=4M status=progress
 	sync
 
 	# Création de la partition dédiée à la persistence
 	echo "Création de la persistence..."
-	sleep 10
+	sleep 5
 	printf 'n\np\n\n\n\nw' | fdisk $OPTARG
 	echo "Formatage..."
 	sleep 10
