@@ -1,12 +1,19 @@
-# svpro_gnu
+# SVPROGNU
 
-Système d'exploitation x64 - 100% GNU basé sur Debian
+Système d'exploitation x64 - 100% GNU basé sur Debian 11 (Bullseye)
+
 
 ## Installation (root)
 ### Créer clef usb + persistence
 **Attention ! La clef ne doit pas être montée par un autre processus (explorateur de fichiers, utilitaire d'auto-mount...)
+
+* Si vous avez déjà téléchatgé l'image ISO, dans le même répertoire :
 ```
-curl https://git.weblib.re/svpro/svpro_gnu/raw/branch/develop/build_svprognu | bash -s -- -d /dev/sdX
+curl https://git.weblib.re/svpro/svprognu/raw/branch/develop/build_svprognu | bash -s -- -d /dev/sdX
+```
+* Ou récupérer l'image depuis le serveur :
+```
+curl https://git.weblib.re/svpro/svprognu/raw/branch/develop/build_svprognu | bash -s -- -r -d /dev/sdX
 ```
 **La persistence sera configurée lors du 1er boot. Le démarrage peut prendre quelques minutes.
 
