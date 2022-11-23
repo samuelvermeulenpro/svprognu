@@ -30,6 +30,13 @@ case $opt in
 
    	d)
 	echo "Transfert en cours..."
+
+	#Vérification montage support
+	if mount | grep -q $OPTARG > /dev/null
+        	then
+        	umount $OPTARG* || /bin/true
+	fi
+
 	#Réinitialisation de la clé : Table DOS
 	printf 'o\nw' | fdisk $OPTARG
 
