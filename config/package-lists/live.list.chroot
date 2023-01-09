@@ -27,6 +27,8 @@ gparted
 dkms
 python3-pip
 cups
+numlockx
+gnupg2
 
 # Graphiques
 scribus
@@ -47,6 +49,8 @@ qtpass
 nextcloud-desktop
 nautilus-nextcloud
 galculator
+snapd
+filezilla
 
 # Internet
 pidgin
