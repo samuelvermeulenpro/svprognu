@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+mkdir -p /etc/lightdm/lightdm.conf.d
+echo -e "[Seat:*]\ngreeter-hide-users=false" > /etc/lightdm/lightdm.conf.d/010-users-list.conf
+echo -e "[Seat:*]\ngreeter-setup-script=/usr/bin/numlockx on" > /etc/lightdm/lightdm.conf.d/020-numlock-on.conf
+
+exit 0
