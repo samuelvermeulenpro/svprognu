@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafile-keyring.asc
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/bullseye/ stable main' > /etc/apt/sources.list.d/seafile.list
 
