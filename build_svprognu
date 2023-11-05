@@ -5,7 +5,7 @@
 
 set -e
 
-ISO="live-svprognu-bullseye_x64.iso"
+ISO="live-svprognu-bullseye_amd64.iso"
 
 
 while getopts ":r d:" opt; do
