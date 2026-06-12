@@ -1,0 +1,7 @@
+PRETTY_NAME="Debian SVPROGNU Bookworm"
+NAME="SVPROGNU Bookworm"
+ID=svprognu_bookworm
+VERSION="12"
+VERSION_ID=12
+HOME_URL="https://svprognu.vermeulen.pro"
+SUPPORT_URL="https://git.vermeulen.pro/SVPRO/svprognu"

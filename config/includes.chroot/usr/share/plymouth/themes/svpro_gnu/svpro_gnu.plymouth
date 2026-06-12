@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=svpro_gnu
+Description=Plymouth svpro_gnu
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/svpro_gnu
+ScriptFile=/usr/share/plymouth/themes/svpro_gnu/svpro_gnu.script

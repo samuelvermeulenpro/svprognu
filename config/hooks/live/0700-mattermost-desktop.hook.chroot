@@ -1,0 +1,7 @@
+#!/bin/bash
+
+wget https://releases.mattermost.com/desktop/5.5.1/mattermost-desktop_5.5.1-1_amd64.deb
+dpkg -i mattermost-desktop_5.5.1-1_amd64.deb
+apt install -fy
+
+exit 0

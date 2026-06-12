@@ -1,0 +1,14 @@
+#!/bin/bash
+
+GIT="https://github.com/balena-io/etcher"
+VERSION=$(git -c 'versionsort.suffix=-' \
+    ls-remote --exit-code --refs --sort='version:refname' --tags ${GIT} '*.*.*' \
+    | tail --lines=1 \
+    | cut --delimiter='/' --fields=3 \
+	 | sed -e 's/v//g') #Get latest version number without "v"
+
+wget ${GIT}/releases/download/v${VERSION}/balena-etcher_${VERSION}_amd64.deb
+dpkg -i balena-etcher_${VERSION}_amd64.deb
+apt install -fy
+
+exit 0

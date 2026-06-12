@@ -1,0 +1,78 @@
+# Base
+live-boot
+live-config
+live-config-systemd
+
+# System
+firmware-linux-nonfree
+task-french-desktop
+task-xfce-desktop
+lxde-icon-theme
+sddm
+fonts-cantarell
+bluebird-gtk-theme
+terminator
+openssh-server
+nautilus
+plymouth-themes
+curl
+git
+sshfs
+wget
+rsync
+net-tools
+davfs2
+xtightvncviewer
+gparted
+dkms
+python3-pip
+cups
+numlockx
+gnupg2
+bluetooth
+blueman
+samba
+screen
+ntp
+
+# Graphiques
+scribus
+inkscape
+gimp
+flameshot
+ksnip
+
+# Multimedia
+vlc
+simplescreenrecorder
+openshot-qt
+audacity
+kodi
+obs-studio
+brasero
+vokoscreen-ng
+
+# Utilitaires
+qtpass
+nextcloud-desktop
+nautilus-nextcloud
+galculator
+snapd
+filezilla
+
+# Internet
+pidgin
+remmina
+remmina-plugin-vnc
+firefox-esr
+firefox-esr-l10n-fr
+thunderbird
+thunderbird-l10n-fr
+chromium
+chromium-l10n
+
+# Education
+gcompris-qt
+
+# Virtualisation
+spice-vdagent
