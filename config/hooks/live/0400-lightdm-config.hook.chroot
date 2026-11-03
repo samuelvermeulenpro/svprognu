@@ -6,4 +6,8 @@ mkdir -p /etc/lightdm/lightdm.conf.d
 echo -e "[Seat:*]\ngreeter-hide-users=false" > /etc/lightdm/lightdm.conf.d/010-users-list.conf
 echo -e "[Seat:*]\ngreeter-setup-script=/usr/bin/numlockx on" > /etc/lightdm/lightdm.conf.d/020-numlock-on.conf
 
+# LightDM gestionnaire de connexion par defaut
+echo "/usr/sbin/lightdm" > /etc/X11/default-display-manager
+echo "lightdm shared/default-x-display-manager select lightdm" | debconf-set-selections
+
 exit 0

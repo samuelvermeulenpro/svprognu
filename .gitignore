@@ -1,3 +1,14 @@
 cache/*
+cache.*/
 *.iso
 *.md5sum
+*.contents
+*.files
+*.packages
+*.zsync
+build.log
+.build/
+binary/
+chroot/
+local/
+.lock

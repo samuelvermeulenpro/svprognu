@@ -1,7 +1,12 @@
 #!/bin/bash
 
-echo "GRUB_BACKGROUND=\"/usr/share/plymouth/themes/svpro_gnu/svprognu-grub.png\"" >> /etc/default/grub
-echo "GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash\"" >> /etc/default/grub
+# Lance par le preseed (late_command) : installe le theme GRUB SVPro
+# dans /boot (lu par GRUB avant le montage de /usr) puis regenere grub.cfg
+
+set -e
+
+mkdir -p /boot/grub/themes
+cp -a /usr/share/svprognu/grub/themes/svpro /boot/grub/themes/
 update-grub
 
 exit 0

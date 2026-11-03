@@ -1,0 +1,57 @@
+# SVPro GRUB theme
+# Designed for a 1920x1080 background; GRUB scales proportionally on other resolutions.
+
+title-text: ""
+desktop-image: "background.png"
+desktop-color: "#001032"
+desktop-image-scale-method: "stretch"
+
+terminal-font: "Unifont Regular 16"
+
++ boot_menu {
+    left = 10%
+    top = 78%
+    width = 80%
+    height = 17%
+
+    item_font = "Unifont Regular 16"
+    item_color = "#8FB4E0"
+    selected_item_color = "#FFFFFF"
+
+    item_height = 34
+    item_spacing = 6
+    item_padding = 10
+
+    icon_width = 0
+    icon_height = 0
+
+    scrollbar = false
+}
+
++ label {
+    left = 10%
+    top = 71%
+    width = 80%
+    height = 30
+    text = "Flèches pour choisir, Entrée pour démarrer"
+    font = "Unifont Regular 16"
+    color = "#4DA6E8"
+    align = "center"
+}
+
++ progress_bar {
+    id = "__timeout__"
+    left = 10%
+    top = 96%
+    width = 80%
+    height = 14
+
+    font = "Unifont Regular 16"
+    text_color = "#4DA6E8"
+    fg_color = "#4DA6E8"
+    bg_color = "#1B3A6B"
+    border_color = "#5B7BFF"
+
+    show_text = true
+    text = "@TIMEOUT_NOTIFICATION_SHORT@"
+}

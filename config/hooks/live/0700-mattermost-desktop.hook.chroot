@@ -1,7 +1,14 @@
 #!/bin/bash
 
-wget https://releases.mattermost.com/desktop/5.5.1/mattermost-desktop_5.5.1-1_amd64.deb
-dpkg -i mattermost-desktop_5.5.1-1_amd64.deb
-apt install -fy
+set -e
+
+# Depot officiel Mattermost (version toujours a jour)
+curl -fsSL https://deb.packages.mattermost.com/pubkey.gpg | gpg --dearmor > /usr/share/keyrings/mattermost.gpg
+
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/mattermost.gpg] https://deb.packages.mattermost.com stable main" \
+	> /etc/apt/sources.list.d/mattermost.list
+
+apt update
+apt install -y mattermost-desktop
 
 exit 0

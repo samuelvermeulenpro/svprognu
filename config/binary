@@ -10,13 +10,13 @@ LB_BINARY_FILESYSTEM="fat32"
 LB_APT_INDICES="true"
 
 # Set boot parameters
-LB_BOOTAPPEND_LIVE="lang=fr_FR.UTF-8 locales=fr_FR.UTF-8 keyboard-layouts=fr splash timezone=Europe/Paris utc=yes keyboard-model=pc105 hostname=svprognu boot=live persistence components username=svpro_gnu"
+LB_BOOTAPPEND_LIVE="boot=live components quiet splash persistence lang=fr_FR.UTF-8 locales=fr_FR.UTF-8 keyboard-layouts=fr keyboard-model=pc105 timezone=Europe/Paris utc=yes hostname=svprognu username=svpro_gnu"
 
 # Set boot parameters
 LB_BOOTAPPEND_INSTALL="locales=fr_FR.UTF-8"
 
 # Set boot parameters
-LB_BOOTAPPEND_LIVE_FAILSAFE="boot=live components memtest noapic noapm nodma nomce nolapic nosmp nosplash vga=788"
+LB_BOOTAPPEND_LIVE_FAILSAFE="boot=live components memtest noapic noapm nodma nomce nosmp nosplash vga=788"
 
 # Set BIOS bootloader
 LB_BOOTLOADER_BIOS="syslinux"
@@ -43,7 +43,7 @@ LB_DM_VERITY_FEC_ROOTS=""
 LB_DM_VERITY_SIGN=""
 
 # Set zsync
-LB_ZSYNC="true"
+LB_ZSYNC="false"
 
 # Control if we build binary images chrooted
 # NEVER, *EVER*, *E*V*E*R* SET THIS OPTION to false.
@@ -53,7 +53,7 @@ LB_BUILD_WITH_CHROOT="true"
 LB_DEBIAN_INSTALLER="live"
 
 # Set debian-installer suite
-LB_DEBIAN_INSTALLER_DISTRIBUTION="bookworm"
+LB_DEBIAN_INSTALLER_DISTRIBUTION="trixie"
 
 # Set debian-installer preseed filename/url
 LB_DEBIAN_INSTALLER_PRESEEDFILE=""
@@ -71,16 +71,16 @@ LB_HDD_SIZE="auto"
 LB_HDD_PARTITION_START=""
 
 # Set iso author
-LB_ISO_APPLICATION="SVPROGNU-12"
+LB_ISO_APPLICATION="SVPROGNU-13"
 
 # Set iso preparer
 LB_ISO_PREPARER="live-build @LB_VERSION@; https://salsa.debian.org/live-team/live-build"
 
 # Set iso publisher
-LB_ISO_PUBLISHER="Debian Live project; https://wiki.debian.org/DebianLive; debian-live@lists.debian.org"
+LB_ISO_PUBLISHER="SVPRO; https://svprognu.vermeulen.pro"
 
 # Set iso volume (max 32 chars)
-LB_ISO_VOLUME="SVPROGNU-12"
+LB_ISO_VOLUME="SVPROGNU-13"
 
 # Set jffs2 eraseblock size
 LB_JFFS2_ERASEBLOCK=""

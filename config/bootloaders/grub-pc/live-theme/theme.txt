@@ -1,51 +1,54 @@
+# SVPro GRUB theme (live ISO)
+# Modèle : /boot/grub/themes/svpro - fond 1920x1080, GRUB met à l'échelle.
+
+title-text: ""
 desktop-image: "../splash.png"
-title-color: "#ffffff"
-title-font: "DejaVu Sans Bold 16"
-title-text: "Live Boot Menu with GRUB"
-message-font: "Unifont Regular 16"
+desktop-color: "#001032"
+desktop-image-scale-method: "stretch"
+
 terminal-font: "Unifont Regular 16"
 
-#help bar at the bottom
-+ label {
-        top = 100%-50
-        left = 0
-        width = 100%
-        height = 20
-        text = "@KEYMAP_SHORT@"
-        align = "center"
-        color = "#ffffff"
-	font = "DejaVu Sans Bold 14"
-}
-
-#boot menu
 + boot_menu {
-        left = 10%
-        width = 80%
-        top = 52%
-        height = 48%-80
-        item_color = "#a8a8a8"
-	item_font = "DejaVu Sans Bold 14"
-        selected_item_color= "#ffffff"
-	selected_item_font = "DejaVu Sans Bold 14"
-        item_height = 16
-        item_padding = 0
-        item_spacing = 4
-	icon_width = 0
-	icon_heigh = 0
-	item_icon_space = 0
+    left = 10%
+    top = 78%
+    width = 80%
+    height = 22%-48
+
+    item_font = "Unifont Regular 16"
+    item_color = "#8FB4E0"
+    selected_item_color = "#FFFFFF"
+
+    item_height = 26
+    item_spacing = 4
+    item_padding = 10
+
+    icon_width = 0
+    icon_height = 0
+
+    scrollbar = false
 }
 
-#progress bar
 + progress_bar {
-        id = "__timeout__"
-        left = 15%
-        top = 100%-80
-        height = 16
-        width = 70%
-        font = "DejaVu Sans Regular 14"
-        text_color = "#000000"
-        fg_color = "#ffffff"
-        bg_color = "#a8a8a8"
-        border_color = "#ffffff"
-        text = "@TIMEOUT_NOTIFICATION_LONG@"
+    id = "__timeout__"
+    left = 10%
+    top = 100%-46
+    width = 80%
+    height = 10
+
+    fg_color = "#4DA6E8"
+    bg_color = "#1B3A6B"
+    border_color = "#5B7BFF"
+
+    show_text = false
+}
+
++ label {
+    left = 10%
+    top = 100%-30
+    width = 80%
+    height = 20
+    text = "Flèches pour choisir, Entrée pour démarrer, e pour éditer"
+    font = "Unifont Regular 16"
+    color = "#4DA6E8"
+    align = "center"
 }

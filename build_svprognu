@@ -5,7 +5,7 @@
 
 set -e
 
-ISO="live-svprognu-bookworm_amd64.iso"
+ISO="live-svprognu-trixie_amd64.iso"
 
 
 while getopts ":r d:" opt; do

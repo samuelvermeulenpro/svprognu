@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+# Fond d'ecran SVPRO par defaut (XFCE, LightDM)
+WALLPAPER=/usr/share/backgrounds/svprognu/svprognu-1920x1080.png
+update-alternatives --install /usr/share/images/desktop-base/desktop-background \
+	desktop-background ${WALLPAPER} 100
+update-alternatives --set desktop-background ${WALLPAPER}
+
+gtk-update-icon-cache -f /usr/share/icons/nuoveXT2 || true
+
+exit 0
