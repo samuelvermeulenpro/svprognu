@@ -8,6 +8,12 @@ update-alternatives --install /usr/share/images/desktop-base/desktop-background 
 	desktop-background ${WALLPAPER} 100
 update-alternatives --set desktop-background ${WALLPAPER}
 
+# xfdesktop 4.20 n'utilise plus l'alternative Debian : son fond par defaut
+# est xfce-x.svg, redirige vers le fond SVPRO (dpkg-divert survit aux mises a jour)
+dpkg-divert --local --rename --divert /usr/share/backgrounds/xfce/xfce-x.svg.xfce \
+	--add /usr/share/backgrounds/xfce/xfce-x.svg
+ln -sf ${WALLPAPER} /usr/share/backgrounds/xfce/xfce-x.svg
+
 gtk-update-icon-cache -f /usr/share/icons/nuoveXT2 || true
 
 exit 0
