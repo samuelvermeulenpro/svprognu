@@ -12,3 +12,5 @@ binary/
 chroot/
 local/
 .lock
+binary.*
+chroot.*
