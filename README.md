@@ -12,7 +12,7 @@ Système d'exploitation 64 bits - 100% GNU basé sur Debian 13 (Trixie)
 **Attention ! La clef ne doit pas être montée par un autre processus (explorateur de fichiers, utilitaire d'auto-mount...)
 * Cloner le dépot
 ```
-git clone -b trixie https://git.vermeulen.pro/SVPRO/svprognu.git && cd svprognu
+git clone -b trixie https://github.com/samuelvermeulenpro/svprognu.git && cd svprognu
 ```
 * Si vous avez déjà téléchargé l'image ISO, dans le même répertoire :
 ```

@@ -7,5 +7,5 @@ VERSION_ID=13
 VERSION_CODENAME=trixie
 DEBIAN_VERSION_FULL=13
 HOME_URL="https://svprognu.vermeulen.pro"
-SUPPORT_URL="https://git.vermeulen.pro/SVPRO/svprognu"
-BUG_REPORT_URL="https://git.vermeulen.pro/SVPRO/svprognu/issues"
+SUPPORT_URL="https://github.com/samuelvermeulenpro/svprognu"
+BUG_REPORT_URL="https://github.com/samuelvermeulenpro/svprognu/issues"
