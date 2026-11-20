@@ -1,71 +1,133 @@
 #!/bin/bash
 
-# Creation de la clef ./build_svprognu -d /dev/sdX
-
+# Creation d'une clef live SVPROGNU avec persistence
+#   ./build_svprognu -d /dev/sdX       a partir de l'iso du repertoire courant
+#   ./build_svprognu -r -d /dev/sdX    en telechargeant l'iso au prealable
+#   ./build_svprognu -r                telechargement seul
 
 set -e
 
 ISO="live-svprognu-trixie_amd64.iso"
+ISO_URL="https://dl.vermeulen.pro/download.php?s=6f8935755b286f6cf567ca21487bd757ff8be218"
+SUM_URL="https://dl.vermeulen.pro/download.php?s=86696b34890a3bf7801ae78c6e4f2fa777777906"
 
+usage() {
+	echo "Usage : $0 [-r] [-d /dev/sdX] [-y]"
+	echo "  -r  télécharger l'iso et vérifier sa somme de contrôle"
+	echo "  -d  périphérique cible (clé entière, pas une partition)"
+	echo "  -y  ne pas demander de confirmation avant d'effacer la clé"
+	exit 1
+}
 
-while getopts ":r d:" opt; do
-case $opt in
-   	r)
-	# Recuperation iso
+# Nom de la n-ieme partition : /dev/sdb3, /dev/nvme0n1p3, /dev/mmcblk0p3, /dev/loop0p3
+part() {
+	case "$1" in
+		*[0-9]) echo "${1}p${2}" ;;
+		*) echo "${1}${2}" ;;
+	esac
+}
+
+DOWNLOAD=false
+DEV=""
+YES=false
+
+while getopts ":rd:y" opt; do
+	case $opt in
+		r) DOWNLOAD=true ;;
+		d) DEV=$OPTARG ;;
+		y) YES=true ;;
+		*) usage ;;
+	esac
+done
+
+if ! $DOWNLOAD && [ -z "$DEV" ]; then
+	usage
+fi
+
+# Recuperation iso (avant la copie, quel que soit l'ordre des options)
+if $DOWNLOAD; then
 	echo "Téléchargement de l'iso..."
-	sleep 5
-	wget -O ${ISO} https://dl.vermeulen.pro/SVPROGNU/${ISO}
-	wget -O ${ISO}.md5sum https://dl.vermeulen.pro/SVPROGNU/${ISO}.md5sum
+	wget -c -O ${ISO} "${ISO_URL}"
+	wget -O ${ISO}.sha256sum "${SUM_URL}"
 	echo "Vérification de l'image..."
-
-	if ! md5sum -c ${ISO}.md5sum
-		then
-		echo "ISO Corompue. Abandon !!"
-		rm -f ${ISO} ${ISO}.md5
+	if ! sha256sum -c ${ISO}.sha256sum; then
+		echo "ISO corrompue. Abandon !!"
+		rm -f ${ISO} ${ISO}.sha256sum
 		exit 1
 	fi
-	;;
+fi
 
-# Copie de l'image iso sur clé
+[ -z "$DEV" ] && exit 0
 
-   	d)
-	echo "Transfert en cours..."
-
-	#Vérification montage support
-	if mount | grep -q $OPTARG > /dev/null
-        	then
-        	umount $OPTARG* || /bin/true
-	fi
-
-	#Réinitialisation de la clé : Table DOS
-	printf 'o\nw' | fdisk $OPTARG
-
-	#Transfert
-	dd if=${ISO} of=$OPTARG bs=4M status=progress
-	sync
-
-	# Création de la partition dédiée à la persistence
-	echo "Création de la persistence..."
-	sleep 5
-	printf 'n\np\n\n\n\nw' | fdisk $OPTARG
-	echo "Formatage..."
-	sleep 10
-	mkfs.ext4 -L persistence ${OPTARG}3
-
-	# Configuratio de la partition
-	mkdir -p ./tmp
-	mount ${OPTARG}3 ./tmp
-	echo "/ union" > ./tmp/persistence.conf
-	umount ./tmp
-	echo "Finalisation..."
-	sleep 10
-	rm -rf ./tmp
-
-	# Fin
-	echo "Terminé ! Vous pouvez booter sur la clé USB, la persistence sera auto-configurée lors du premier Boot !"
-	;;
-
+# Copie de l'image iso sur cle
+if [ "$(id -u)" -ne 0 ]; then
+	echo "La création de la clé doit être lancée en root."
+	exit 1
+fi
+if [ ! -f "${ISO}" ]; then
+	echo "${ISO} introuvable dans $(pwd). Utiliser -r pour la télécharger."
+	exit 1
+fi
+case "$(lsblk -dno TYPE "$DEV" 2>/dev/null)" in
+	disk|loop) ;;
+	*)
+		echo "$DEV n'est pas un disque entier (exemple : /dev/sdb, pas /dev/sdb1)."
+		exit 1
+		;;
 esac
+if lsblk -no MOUNTPOINTS "$DEV" | grep -qxE '/|/boot|/boot/efi|/home|/usr|/var|\[SWAP\]'; then
+	echo "$DEV contient le système en cours d'utilisation. Abandon !!"
+	exit 1
+fi
+ISO_SIZE=$(stat -c %s "${ISO}")
+if [ "$(blockdev --getsize64 "$DEV")" -le $(( ISO_SIZE + 512 * 1024 * 1024 )) ]; then
+	echo "$DEV est trop petit pour l'iso et une partition de persistence."
+	exit 1
+fi
+
+lsblk -o NAME,SIZE,MODEL,LABEL,MOUNTPOINTS "$DEV"
+if ! $YES; then
+	read -r -p "Toutes les données de $DEV seront effacées. Continuer ? (oui/non) " answer
+	[ "$answer" = "oui" ] || { echo "Abandon."; exit 1; }
+fi
+
+# Demontage des partitions de la cle
+for p in $(lsblk -lnpo NAME "$DEV" | tail -n +2); do
+	umount "$p" 2>/dev/null || true
 done
+
+echo "Transfert en cours..."
+wipefs -a -q "$DEV"
+dd if=${ISO} of="$DEV" bs=4M status=progress conv=fsync oflag=direct
+
+# Creation de la partition dediee a la persistence, apres l'image (alignee sur 1 Mio)
+echo "Création de la persistence..."
+START=$(( (ISO_SIZE / 512 + 2047) / 2048 * 2048 ))
+echo "${START},,83" | sfdisk --append --no-reread -q "$DEV"
+partprobe "$DEV" 2>/dev/null || blockdev --rereadpt "$DEV" 2>/dev/null || true
+udevadm settle
+
+PERSIST=$(part "$DEV" 3)
+for i in $(seq 10); do
+	[ -b "$PERSIST" ] && break
+	sleep 1
+done
+if [ ! -b "$PERSIST" ]; then
+	echo "Partition $PERSIST introuvable. Abandon !!"
+	exit 1
+fi
+
+echo "Formatage..."
+mkfs.ext4 -q -F -L persistence "$PERSIST"
+
+# Configuration de la partition
+MNT=$(mktemp -d)
+mount "$PERSIST" "$MNT"
+echo "/ union" > "$MNT/persistence.conf"
+umount "$MNT"
+rmdir "$MNT"
+sync
+
+echo "Terminé ! Vous pouvez booter sur la clé USB, la persistence sera auto-configurée lors du premier boot !"
 
 exit 0

@@ -22,6 +22,12 @@ git clone -b trixie https://github.com/samuelvermeulenpro/svprognu.git && cd svp
 ```
 ./build_svprognu -r -d /dev/sdX # sdX étant la cible physique de la clé
 ```
+* Ou télécharger l'image seule (vérifiée par somme SHA-256) :
+```
+./build_svprognu -r
+```
+Le script affiche la clé ciblée et demande confirmation avant de l'effacer (`-y` pour s'en passer).
+
 **La persistence sera configurée lors du 1er boot. Le démarrage peut prendre quelques minutes.**
 
 **Note :** Le mot de passe pour la session « Live User » est `svpro_gnu`
@@ -37,7 +43,7 @@ cd <dossier du dépôt>
 lb config
 lb build
 ```
-L'image produite est `live-svprognu-trixie_amd64.iso` (+ `.md5sum`), le journal dans `build.log`.
+L'image produite est `live-svprognu-trixie_amd64.iso` (+ `.sha256sum`), le journal dans `build.log`.
 
 ### Thème
 | Élément | Emplacement dans `config/` |
