@@ -4,7 +4,7 @@ Système d'exploitation 64 bits - 100% GNU basé sur Debian 13 (Trixie)
 
 * Bureau XFCE 4.20, écran de connexion LightDM
 * Thème SVPro : démarrage Plymouth, menus GRUB / isolinux, fond d'écran et écran de connexion
-* La version Debian 12 (Bookworm) reste disponible sur la branche `main`
+* La version Debian 12 (Bookworm) reste disponible sur la branche `bookworm`
 
 
 ## Installation (root)
@@ -12,7 +12,7 @@ Système d'exploitation 64 bits - 100% GNU basé sur Debian 13 (Trixie)
 **Attention ! La clef ne doit pas être montée par un autre processus (explorateur de fichiers, utilitaire d'auto-mount...)
 * Cloner le dépot
 ```
-git clone -b trixie https://github.com/samuelvermeulenpro/svprognu.git && cd svprognu
+git clone https://github.com/samuelvermeulenpro/svprognu.git && cd svprognu
 ```
 * Si vous avez déjà téléchargé l'image ISO, dans le même répertoire :
 ```
