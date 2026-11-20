@@ -8,7 +8,7 @@
 set -e
 
 ISO="live-svprognu-trixie_amd64.iso"
-ISO_URL="https://dl.vermeulen.pro/download.php?s=6f8935755b286f6cf567ca21487bd757ff8be218"
+ISO_URL="https://dl.vermeulen.pro/download.php?s=a787ad7475d093d4c035d0be6f46bd4e0c07eb57"
 SUM_URL="https://dl.vermeulen.pro/download.php?s=86696b34890a3bf7801ae78c6e4f2fa777777906"
 
 usage() {
