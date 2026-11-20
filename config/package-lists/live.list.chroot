@@ -8,13 +8,14 @@ firmware-linux-nonfree
 task-french-desktop
 task-xfce-desktop
 lxde-icon-theme
-sddm
 fonts-cantarell
 bluebird-gtk-theme
 terminator
 openssh-server
 nautilus
+plymouth
 plymouth-themes
+plymouth-label
 curl
 git
 sshfs
@@ -22,18 +23,18 @@ wget
 rsync
 net-tools
 davfs2
-xtightvncviewer
+tigervnc-viewer
 gparted
 dkms
 python3-pip
 cups
 numlockx
-gnupg2
+gnupg
 bluetooth
 blueman
 samba
 screen
-ntp
+ntpsec
 
 # Graphiques
 scribus
@@ -73,6 +74,11 @@ chromium-l10n
 
 # Education
 gcompris-qt
+
+# Ecran de connexion (theme SVPRO)
+lightdm
+lightdm-gtk-greeter
+lightdm-gtk-greeter-settings
 
 # Virtualisation
 spice-vdagent

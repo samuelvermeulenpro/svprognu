@@ -21,11 +21,11 @@
         <value type="int" value="8"/>
       </property>
       <property name="background-style" type="uint" value="1"/>
-      <property name="background-color" type="array">
-        <value type="uint" value="2827"/>
-        <value type="uint" value="10280"/>
-        <value type="uint" value="34438"/>
-        <value type="uint" value="65535"/>
+      <property name="background-rgba" type="array">
+        <value type="double" value="0.000000"/>
+        <value type="double" value="0.062745"/>
+        <value type="double" value="0.196078"/>
+        <value type="double" value="0.950000"/>
       </property>
     </property>
   </property>

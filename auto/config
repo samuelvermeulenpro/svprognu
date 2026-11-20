@@ -4,21 +4,25 @@ set -e
 
 lb config noauto \
         --bootloaders "syslinux,grub-efi" \
-        --distribution "bookworm" \
+        --distribution "trixie" \
         --architectures "amd64" \
         --archive-areas "main contrib non-free non-free-firmware" \
         --apt-recommends "true" \
         --debian-installer-gui "true" \
         --debian-installer "live" \
-        --bootappend-live "lang=fr_FR.UTF-8 locales=fr_FR.UTF-8 keyboard-layouts=fr splash timezone=Europe/Paris utc=yes keyboard-model=pc105 hostname=svprognu boot=live persistence components username=svpro_gnu" \
+        --bootappend-live "boot=live components quiet splash persistence lang=fr_FR.UTF-8 locales=fr_FR.UTF-8 keyboard-layouts=fr keyboard-model=pc105 timezone=Europe/Paris utc=yes hostname=svprognu username=svpro_gnu" \
         --bootappend-install "locales=fr_FR.UTF-8" \
         --binary-images "iso-hybrid" \
 	--uefi-secure-boot "enable" \
         --linux-flavours "amd64" \
 	--linux-packages "linux-image linux-headers" \
-	--iso-volume "SVPROGNU-12" \
-	--iso-application "SVPROGNU-12" \
+	--image-name "live-svprognu-trixie" \
+	--iso-volume "SVPROGNU-13" \
+	--iso-application "SVPROGNU-13" \
+	--iso-publisher "SVPRO; https://svprognu.vermeulen.pro" \
         --backports "false" \
         --updates "true" \
 	--security "true" \
+        --firmware-binary "true" \
+        --firmware-chroot "true" \
         "${@}"

@@ -1,0 +1,11 @@
+# SVPROGNU : creation des dossiers utilisateur francais a l'ouverture de session.
+# adduser (Trixie) refuse les noms accentues dans /etc/skel, et xdg-user-dirs-update
+# remplace un dossier absent par $HOME au lieu de le creer.
+if [ -f "$HOME/.config/user-dirs.dirs" ]; then
+	(
+		. "$HOME/.config/user-dirs.dirs"
+		for _dir in "$XDG_DOWNLOAD_DIR" "$XDG_TEMPLATES_DIR" "$XDG_VIDEOS_DIR"; do
+			[ -n "$_dir" ] && [ "$_dir" != "$HOME" ] && mkdir -p "$_dir"
+		done
+	) || true
+fi

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+# Additions invite VirtualBox (adaptation de la resolution a la fenetre,
+# presse-papier) : absentes de Trixie, fournies par le depot Debian fasttrack.
+# Les services ne demarrent que sous VirtualBox.
+apt install -y fasttrack-archive-keyring
+
+echo "deb [signed-by=/usr/share/keyrings/fasttrack-archive-keyring.gpg] https://fasttrack.debian.net/debian-fasttrack/ trixie-fasttrack main contrib" \
+	> /etc/apt/sources.list.d/fasttrack.list
+
+apt update
+apt install -y virtualbox-guest-x11
+
+exit 0

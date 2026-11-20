@@ -1,7 +1,11 @@
-PRETTY_NAME="Debian SVPROGNU Bookworm"
-NAME="SVPROGNU Bookworm"
-ID=svprognu_bookworm
-VERSION="12"
-VERSION_ID=12
+PRETTY_NAME="Debian SVPROGNU Trixie"
+NAME="SVPROGNU Trixie"
+ID=svprognu_trixie
+ID_LIKE=debian
+VERSION="13 (trixie)"
+VERSION_ID=13
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13
 HOME_URL="https://svprognu.vermeulen.pro"
-SUPPORT_URL="https://git.vermeulen.pro/SVPRO/svprognu"
+SUPPORT_URL="https://github.com/samuelvermeulenpro/svprognu"
+BUG_REPORT_URL="https://github.com/samuelvermeulenpro/svprognu/issues"

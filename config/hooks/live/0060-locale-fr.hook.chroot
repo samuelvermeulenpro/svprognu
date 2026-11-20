@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+# Francais par defaut dans l'image : live-config ne genere la locale qu'au
+# demarrage du live, le systeme installe (copie du squashfs) restait en C/en_US
+sed -i -e 's/^# *\(fr_FR.UTF-8 UTF-8\)/\1/' -e 's/^# *\(en_US.UTF-8 UTF-8\)/\1/' /etc/locale.gen
+locale-gen
+update-locale LANG=fr_FR.UTF-8 LANGUAGE=fr_FR:fr
+echo "locales locales/default_environment_locale select fr_FR.UTF-8" | debconf-set-selections
+echo "locales locales/locales_to_be_generated multiselect fr_FR.UTF-8 UTF-8, en_US.UTF-8 UTF-8" | debconf-set-selections
+
+# Clavier francais (console et X)
+sed -i -e 's/^XKBLAYOUT=.*/XKBLAYOUT="fr"/' -e 's/^XKBVARIANT=.*/XKBVARIANT="latin9"/' /etc/default/keyboard
+echo "keyboard-configuration keyboard-configuration/xkb-keymap select fr(latin9)" | debconf-set-selections
+
+# Fuseau horaire
+ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+echo "Europe/Paris" > /etc/timezone
+
+exit 0

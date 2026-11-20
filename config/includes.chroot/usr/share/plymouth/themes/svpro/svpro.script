@@ -1,0 +1,120 @@
+// SVPro Plymouth theme
+// Background color sampled from splash artwork (#001032)
+
+Window.SetBackgroundTopColor(0.0, 0.0627, 0.196);
+Window.SetBackgroundBottomColor(0.0, 0.0392, 0.129);
+
+screen_width  = Window.GetWidth();
+screen_height = Window.GetHeight();
+
+// ---------------------------------------------------------------------
+// Logo
+// ---------------------------------------------------------------------
+logo.image  = Image("logo.png");
+
+// Shrink the logo on small screens (800x600, 1024x768...) so the progress
+// bar and messages stay visible below it
+if (logo.image.GetHeight() > screen_height * 0.6)
+{
+    logo.scale = screen_height * 0.6 / logo.image.GetHeight();
+    logo.image = logo.image.Scale(Math.Int(logo.image.GetWidth() * logo.scale),
+                                  Math.Int(logo.image.GetHeight() * logo.scale));
+}
+logo.sprite = Sprite(logo.image);
+
+logo.width  = logo.image.GetWidth();
+logo.height = logo.image.GetHeight();
+
+logo.x = screen_width  / 2 - logo.width  / 2;
+logo.y = screen_height / 2 - logo.height / 2 - 30;
+
+logo.sprite.SetX(logo.x);
+logo.sprite.SetY(logo.y);
+logo.sprite.SetZ(10);
+
+// ---------------------------------------------------------------------
+// Progress bar (track + animated fill)
+// ---------------------------------------------------------------------
+track.image  = Image("progress_track.png");
+track.sprite = Sprite(track.image);
+
+track.width  = track.image.GetWidth();
+track.height = track.image.GetHeight();
+
+track.x = screen_width / 2 - track.width / 2;
+track.y = logo.y + logo.height + 60;
+
+track.sprite.SetX(track.x);
+track.sprite.SetY(track.y);
+track.sprite.SetZ(10);
+
+fill.image_full = Image("progress_fill.png");
+fill.sprite      = Sprite();
+fill.sprite.SetX(track.x);
+fill.sprite.SetY(track.y);
+fill.sprite.SetZ(11);
+
+fun progress_callback(duration, progress)
+{
+    fill.w = Math.Int(track.width * progress);
+    if (fill.w < 2)
+        fill.w = 2;
+    fill.sprite.SetImage(fill.image_full.Scale(fill.w, track.height));
+}
+
+Plymouth.SetBootProgressFunction(progress_callback);
+
+// ---------------------------------------------------------------------
+// Status / message text (kept minimal, shown below the progress bar)
+// ---------------------------------------------------------------------
+message_sprite = Sprite();
+message_sprite.SetZ(10);
+
+fun set_message(text)
+{
+    message_image  = Image.Text(text, 0.30, 0.65, 0.91, 1, "Sans 11");
+    message_sprite.SetImage(message_image);
+    message_sprite.SetX(screen_width / 2 - message_image.GetWidth() / 2);
+    message_sprite.SetY(track.y + track.height + 20);
+}
+
+fun display_normal_callback()
+{
+    set_message("");
+}
+
+fun display_password_callback(prompt, bullets)
+{
+    local.txt = prompt;
+    if (local.txt == "")
+        local.txt = "Mot de passe";
+    set_message(local.txt + ": " + bullets);
+}
+
+fun display_question_callback(prompt, entry)
+{
+    set_message(prompt + ": " + entry);
+}
+
+fun display_message_callback(text)
+{
+    set_message(text);
+}
+
+Plymouth.SetDisplayNormalFunction(display_normal_callback);
+Plymouth.SetDisplayPasswordFunction(display_password_callback);
+Plymouth.SetDisplayQuestionFunction(display_question_callback);
+Plymouth.SetMessageFunction(display_message_callback);
+
+// ---------------------------------------------------------------------
+// Quit transition: simple fade out
+// ---------------------------------------------------------------------
+fun quit_callback()
+{
+    logo.sprite.SetOpacity(0);
+    track.sprite.SetOpacity(0);
+    fill.sprite.SetOpacity(0);
+    message_sprite.SetOpacity(0);
+}
+
+Plymouth.SetQuitFunction(quit_callback);

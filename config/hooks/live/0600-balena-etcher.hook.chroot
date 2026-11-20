@@ -7,8 +7,9 @@ VERSION=$(git -c 'versionsort.suffix=-' \
     | cut --delimiter='/' --fields=3 \
 	 | sed -e 's/v//g') #Get latest version number without "v"
 
-wget ${GIT}/releases/download/v${VERSION}/balena-etcher_${VERSION}_amd64.deb
-dpkg -i balena-etcher_${VERSION}_amd64.deb
+wget -O /tmp/balena-etcher.deb ${GIT}/releases/download/v${VERSION}/balena-etcher_${VERSION}_amd64.deb
+dpkg -i /tmp/balena-etcher.deb
 apt install -fy
+rm -f /tmp/balena-etcher.deb
 
 exit 0

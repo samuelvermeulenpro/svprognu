@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+lb build noauto "${@}" 2>&1 | tee build.log
+
+# Nom attendu par build_svprognu
+mv live-svprognu-trixie-amd64.hybrid.iso live-svprognu-trixie_amd64.iso
+sha256sum live-svprognu-trixie_amd64.iso > live-svprognu-trixie_amd64.iso.sha256sum

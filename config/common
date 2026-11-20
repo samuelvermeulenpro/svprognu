@@ -1,7 +1,7 @@
 # config/common - common options for live-build(7)
 
 # Version of live-build used to build config (config format version)
-LB_CONFIGURATION_VERSION="20230502"
+LB_CONFIGURATION_VERSION="20250505+deb13u1"
 
 # Set package manager
 LB_APT="apt"
@@ -55,7 +55,7 @@ LB_MODE="debian"
 LB_SYSTEM="live"
 
 # Set base name of the image
-LB_IMAGE_NAME="live-image"
+LB_IMAGE_NAME="live-svprognu-trixie"
 
 # Set options to use with apt
 APT_OPTIONS="--yes -o Acquire::Retries=5"

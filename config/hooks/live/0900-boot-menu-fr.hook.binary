@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+# Traduction des entrees live generees par live-build (GRUB EFI + isolinux)
+for _FILE in boot/grub/grub.cfg isolinux/live.cfg
+do
+	if [ -e "${_FILE}" ]
+	then
+		sed -i -e 's/Live system (\([^ )]*\) fail-safe mode)/SVPROGNU Live (\1, mode sans echec)/' \
+			-e 's/Live system (\([^ )]*\))/SVPROGNU Live (\1)/' "${_FILE}"
+	fi
+done
